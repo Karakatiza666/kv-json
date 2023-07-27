@@ -5,13 +5,13 @@ export type KVJson = {
    put: <T>(key: string, value: T) => Promise<void>
 }
 
-type StaticKey<Model, Field extends string> = {
+export type StaticKey<Model, Field extends string> = {
    get: (ctx: {[_ in Field]: KVJson}) => Promise<Model | null>,
    req: (ctx: {[_ in Field]: KVJson}) => Promise<Model>,
    put: (ctx: {[_ in Field]: KVJson}, value: Model) => Promise<void>
 }
 
-type DynamicKey<Model, V, Field extends string> = {
+export type DynamicKey<Model, V, Field extends string> = {
    get: (ctx: {[_ in Field]: KVJson}, key: V) => Promise<Model | null>,
    req: (ctx: {[_ in Field]: KVJson}, key: V) => Promise<Model>,
    put: (ctx: {[_ in Field]: KVJson}, key: V, value: Model) => Promise<void>
